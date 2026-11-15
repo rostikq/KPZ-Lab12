@@ -1,6 +1,7 @@
 package io.github.rostikq;
 
 
+import io.github.rostikq.logger.Logger;
 import io.github.rostikq.task02.*;
 import io.github.rostikq.task01.ShipmentMarker;
 import io.github.rostikq.task01.ShipmentType;
