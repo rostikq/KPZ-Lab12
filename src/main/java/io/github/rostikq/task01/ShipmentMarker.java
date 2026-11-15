@@ -1,6 +1,6 @@
 package io.github.rostikq.task01;
 
-class ShipmentMarker {
+public class ShipmentMarker {
     private String trackingNumber;
     private double latitude;
     private double longitude;

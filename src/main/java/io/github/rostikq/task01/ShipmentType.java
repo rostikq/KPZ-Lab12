@@ -3,7 +3,7 @@ package io.github.rostikq.task01;
 
 import io.github.rostikq.logger.Logger;
 
-class ShipmentType {
+public class ShipmentType {
     private String typeName;
     private String icon;
     private String color;

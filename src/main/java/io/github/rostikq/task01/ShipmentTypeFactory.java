@@ -3,7 +3,7 @@ package io.github.rostikq.task01;
 import java.util.HashMap;
 import java.util.Map;
 
-class ShipmentTypeFactory {
+public class ShipmentTypeFactory {
     private static final Map<String, ShipmentType> types = new HashMap<>();
 
     public static ShipmentType getType(String typeName, String icon, String color) {

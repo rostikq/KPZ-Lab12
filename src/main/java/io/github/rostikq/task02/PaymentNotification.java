@@ -1,6 +1,6 @@
 package io.github.rostikq.task02;
 
-class PaymentNotification extends Notification {
+public class PaymentNotification extends Notification {
     public PaymentNotification(MessageChannel channel) { super(channel); }
 
     @Override

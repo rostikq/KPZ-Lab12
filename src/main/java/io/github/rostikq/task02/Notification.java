@@ -1,6 +1,6 @@
 package io.github.rostikq.task02;
 
-abstract class Notification {
+public abstract class Notification {
     protected MessageChannel channel;
 
     protected Notification(MessageChannel channel) {

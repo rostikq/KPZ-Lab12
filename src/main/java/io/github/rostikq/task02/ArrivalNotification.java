@@ -1,6 +1,6 @@
 package io.github.rostikq.task02;
 
-class ArrivalNotification extends Notification {
+public class ArrivalNotification extends Notification {
     public ArrivalNotification(MessageChannel channel) { super(channel); }
 
     @Override
