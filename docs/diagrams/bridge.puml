@@ -1,0 +1,63 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface MessageChannel {
+    + send(message: String): void
+}
+
+class SmsChannel {
+    + send(message: String): void
+}
+
+class ViberChannel {
+    + send(message: String): void
+}
+
+class EmailChannel {
+    + send(message: String): void
+}
+
+class TelegramChannel {
+    + send(message: String): void
+}
+
+abstract class Notification {
+    # channel: MessageChannel
+    + Notification(channel: MessageChannel)
+    + setChannel(channel: MessageChannel): void
+    {abstract} + notifyClient(recipient: String): void
+}
+
+class ArrivalNotification {
+    + ArrivalNotification(channel: MessageChannel)
+    + notifyClient(recipient: String): void
+}
+
+class DelayNotification {
+    + DelayNotification(channel: MessageChannel)
+    + notifyClient(recipient: String): void
+}
+
+class PaymentNotification {
+    + PaymentNotification(channel: MessageChannel)
+    + notifyClient(recipient: String): void
+}
+
+MessageChannel <|.. SmsChannel
+MessageChannel <|.. ViberChannel
+MessageChannel <|.. EmailChannel
+MessageChannel <|.. TelegramChannel
+
+Notification <|-- ArrivalNotification
+Notification <|-- DelayNotification
+Notification <|-- PaymentNotification
+
+Notification o--> "1" MessageChannel : міст (агрегація)
+
+note as N2
+  **Bridge (Міст):**
+  Відокремлює ієрархію видів сповіщень
+  від ієрархії каналів доставки.
+end note
+
+@enduml

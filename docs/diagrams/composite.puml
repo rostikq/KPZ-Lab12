@@ -1,0 +1,46 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface CargoComponent {
+    + getWeight(): double
+    + getDeclaredValue(): double
+    + getItemsCount(): int
+    + printTree(indent: String): void
+}
+
+class SingleItem {
+    - name: String
+    - weight: double
+    - value: double
+    + SingleItem(name: String, weight: double, value: double)
+    + getWeight(): double
+    + getDeclaredValue(): double
+    + getItemsCount(): int
+    + printTree(indent: String): void
+}
+
+class CargoGroup {
+    - groupName: String
+    - children: List<CargoComponent>
+    + CargoGroup(groupName: String)
+    + add(component: CargoComponent): void
+    + remove(component: CargoComponent): void
+    + getWeight(): double
+    + getDeclaredValue(): double
+    + getItemsCount(): int
+    + printTree(indent: String): void
+}
+
+CargoComponent <|.. SingleItem
+CargoComponent <|.. CargoGroup
+
+CargoGroup o--> "*" CargoComponent : містить вкладення
+
+note as N3
+  **Composite (Компонувач):**
+  Дозволяє однаково працювати як з окремими
+  відправленнями, так і з групами (мішки, палети, рейс)
+  через спільний інтерфейс.
+end note
+
+@enduml

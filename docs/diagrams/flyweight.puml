@@ -1,0 +1,44 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Logger {
+    + {static} log(source: String, message: String): void
+}
+
+class ShipmentType {
+    - typeName: String
+    - icon: String
+    - color: String
+    + ShipmentType(typeName: String, icon: String, color: String)
+    + getTypeName(): String
+    + getIcon(): String
+    + getColor(): String
+}
+
+class ShipmentTypeFactory {
+    - {static} types: Map<String, ShipmentType>
+    + {static} getType(typeName: String, icon: String, color: String): ShipmentType
+    + {static} getTypesCount(): int
+}
+
+class ShipmentMarker {
+    - trackingNumber: String
+    - latitude: double
+    - longitude: double
+    - status: String
+    + ShipmentMarker(trackingNumber: String, lat: double, lon: double, status: String, type: ShipmentType)
+    + getType(): ShipmentType
+    + printInfo(): void
+}
+
+ShipmentTypeFactory o--> "*" ShipmentType : кешує
+ShipmentMarker --> "1" ShipmentType : посилається (розділяє дані)
+ShipmentMarker ..> Logger : використовує
+
+note as N1
+  **Flyweight (Легковаговик):**
+  Зберігає спільні дані типів в одному місці,
+  а унікальні дані позначок — у кожному екземплярі.
+end note
+
+@enduml
